@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Countdown Status</title>
   <style>
-    body {
+    #body1 {
       font-family: Arial, sans-serif;
-      text-align: center;
+      text-align: left;
       margin: 50px;
       background-color: #181818;
+      font-size: 1px;
+      margin-top: 150px;
+      overflow: hidden;
     }
     input, button {
       margin: 10px;
@@ -22,22 +25,47 @@
     }
     #checkertext {
       color: #FFFFFF;
-      font-size: calc(80px + 100%);
+      font-size: calc(50px + 100%);
     }
     #checkertextsub
     {
         font-size: 40px;
         color: rgba(255, 255, 255, 0.8);
     }
+    #imageyeno {
+        margin-left: -60px;
+    }
+    #result1 {
+      margin-top: 20px;
+      font-size: calc(30px + 100%);
+    }
+    #checkertext1 {
+      color: #FFFFFF;
+      font-size: calc(50px + 100%);
+    }
+    #checkertextsub1
+    {
+        font-size: 40px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    #imageyeno1 {
+        margin-left: -60px;
+    }
+    #mathlepart {
+        position: relative;
+        left: 78%;
+        top: -800px;
+    }
+
   </style>
 </head>
-<body>
+<body id="body1">
   <p id="checkertext">Is Countdown up?</p>
   <p id="checkertextsub">If it is, click on the emoji.</p>
   <div id="result">
   </div>
 <a class="attributetag" href="https://happysoft.org.uk/countdown/numgame.php">
-  <img class="imageyeno">  
+  <img class="imageyeno" id="imageyeno">  
 </a>
   <script>
     const resultDiv = document.getElementById('result');
@@ -63,5 +91,38 @@
     // Call the async function
     checkCountdown();
   </script>
+<div id="mathlepart">
+<p id="checkertext1">Is Mathle up?</p>
+<p id="checkertextsub1">If it is, click on the emoji.</p>
+<div id="result1">
+</div>
+<a class="attributetag1" href="https://mathlegame.com">
+<img class="imageyeno1" id="imageyeno1">  
+</a>
+<script>
+  const resultDiv1 = document.getElementById('result1');
+
+  async function checkMathle() {
+    const url = `https://mathlegame.com`;
+
+    try {
+      const response = await fetch(url, { mode: 'no-cors' });
+      resultDiv1.innerText = "Yes, Mathle is currently up.";
+      resultDiv1.style.color = "#00FF00"
+      document.getElementsByClassName("imageyeno1")[0].src = "https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e5d0c2ab246786ca1d5e_86.png"
+    } catch (error) {
+      resultDiv1.innerText = "No, Mathle is not currently up :(";
+      resultDiv1.style.color = "#FF0000"
+      document.getElementsByClassName("imageyeno1")[0].src = "https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e661d456453abd7fa14b_73.png"
+      document.getElementsByClassName("attributetag")[0].href = ""
+      document.getElementsByClassName("imageyeno1")[0].style.visibility = "visible"
+      console.error(error);
+    }
+  }
+
+  // Call the async function
+  checkMathle();
+</script>
+</div>
 </body>
 </html>
