@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+      background-color: #181818;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: calc(30px + 100%);
+    }
+    #checkertext {
+      color: #FFFFFF;
+      font-size: calc(80px + 100%);
+    }
+    #checkertextsub
+    {
+        font-size: 40px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <p id="checkertext">Is Mathle up?</p>
+  <p id="checkertextsub">If it is, click on the emoji.</p>
+  <div id="result">
+  </div>
+<a class="attributetag" href="https://mathlegame.com">
+  <img class="imageyeno">  
+</a>
+  <script>
+    const resultDiv = document.getElementById('result');
+
+    async function checkMathle() {
+      const url = `https://mathlegame.com`;
+
+      try {
+        const response = await fetch(url, { mode: 'no-cors' });
+        resultDiv.innerText = "Yes, Mathle is currently up.";
+        resultDiv.style.color = "#00FF00"
+        document.getElementsByClassName("imageyeno")[0].src = "https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e5d0c2ab246786ca1d5e_86.png"
+      } catch (error) {
+        resultDiv.innerText = "No, Mathle is not currently up :(";
+        resultDiv.style.color = "#FF0000"
+        document.getElementsByClassName("imageyeno")[0].src = "https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e661d456453abd7fa14b_73.png"
+        document.getElementsByClassName("attributetag")[0].href = ""
+        document.getElementsByClassName("imageyeno")[0].style.visibility = "visible"
+        console.error(error);
+      }
+    }
+
+    // Call the async function
+    checkMathle();
+  </script>
+</body>
+</html>
